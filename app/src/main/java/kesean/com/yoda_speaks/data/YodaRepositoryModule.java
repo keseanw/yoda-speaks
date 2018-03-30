@@ -27,7 +27,7 @@ public class YodaRepositoryModule {
     }
 
     /*
-    * Local data source
+    * Local data source - not in use
     * */
 
 //    @Provides

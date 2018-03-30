@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
+import kesean.com.yoda_speaks.data.DaggerYodaRepositoryComponent;
 import kesean.com.yoda_speaks.data.YodaRepositoryComponent;
 import timber.log.Timber;
 
