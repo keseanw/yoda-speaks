@@ -77,6 +77,9 @@ dependencies {
 
     // Local Unit Test
     testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testImplementation "org.hamcrest:hamcrest-all:$rootProject.hamcrestVersion"
+
 
     // Developer tools
     implementation "com.facebook.stetho:stetho:$rootProject.stethoVersion"

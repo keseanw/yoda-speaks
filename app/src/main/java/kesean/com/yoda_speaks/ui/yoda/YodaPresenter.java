@@ -9,6 +9,8 @@ import javax.inject.Inject;
 
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import kesean.com.yoda_speaks.data.model.YodaResponse;
 import kesean.com.yoda_speaks.data.repository.YodaRepository;
 import kesean.com.yoda_speaks.util.RunOn;
 import kesean.com.yoda_speaks.util.SchedulerType;
@@ -55,7 +57,12 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
 
     @Override
     public void loadTranslation(String inputValue) {
-
+        Disposable disposable = repository.loadTranslation(inputValue)
+                .filter(translation -> translation.getTranslated() != null)
+                .subscribeOn(ioScheduler)
+                .observeOn(uiScheduler)
+                .subscribe(this::handleReturnedData, this::handleError, () -> view.stopLoadingIndicator());
+        disposeBag.add(disposable);
     }
 
     @Override
@@ -66,5 +73,21 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
     @Override
     public String getInputValue() {
         return null;
+    }
+
+    private void handleError(Throwable error) {
+        //view.stopLoadingIndicator();
+        //can handle displaying different views based on errors returned
+        view.showErrorMessage(error.getLocalizedMessage());
+    }
+
+    private void handleReturnedData(YodaResponse obj) {
+        //view.stopLoadingIndicator();
+
+        if (obj.getTranslated() != null && !obj.getTranslated().isEmpty()) {
+            view.showYodaTranslation(obj);
+        } else {
+            view.showNoDataMessage();
+        }
     }
 }

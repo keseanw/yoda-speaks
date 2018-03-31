@@ -2,7 +2,10 @@ package kesean.com.yoda_speaks.ui.yoda;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +20,10 @@ import kesean.com.yoda_speaks.ui.base.BaseActivity;
 public class MainActivity extends BaseActivity implements YodaContract.View {
     @BindView(R.id.text_notification)
     TextView notificationText;
+    @BindView(R.id.yodaResponse)
+    TextView yodaTranslation;
+    @BindView(R.id.textInputEditText)
+    EditText englishTextInput;
 
     @Inject
     YodaPresenter presenter;
@@ -27,6 +34,14 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initializePresenter();
+
+        englishTextInput.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if(i == EditorInfo.IME_ACTION_DONE) {
+                presenter.loadTranslation(textView.getText().toString());
+                return true;
+            }
+            return false;
+        });
     }
 
     private void initializePresenter() {
@@ -39,7 +54,7 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
 
     @Override
     public void showYodaTranslation(YodaResponse yodaResponse) {
-        //TODO get yoda translation
+        yodaTranslation.setText(yodaResponse.getTranslated());
     }
 
     @Override

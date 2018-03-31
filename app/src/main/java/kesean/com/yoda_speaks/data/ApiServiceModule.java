@@ -8,10 +8,11 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import kesean.com.yoda_speaks.data.api.HeaderInterceptor;
 import kesean.com.yoda_speaks.data.api.HttpErrorInterceptor;
 import kesean.com.yoda_speaks.data.api.NetworkConnectivityInterceptor;
-import kesean.com.yoda_speaks.data.api.QueryInterceptor;
 import kesean.com.yoda_speaks.data.api.YodaService;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
@@ -57,8 +58,8 @@ public class ApiServiceModule {
 
     @Provides
     @Singleton
-    QueryInterceptor provideQueryInterceptor() {
-        return new QueryInterceptor();
+    HeaderInterceptor provideHeaderInterceptor() {
+        return new HeaderInterceptor();
     }
 
 
@@ -70,11 +71,11 @@ public class ApiServiceModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideHttpClient(HttpErrorInterceptor httpErrorInterceptor, NetworkConnectivityInterceptor networkConnectivityInterceptor, QueryInterceptor queryInterceptor, HttpLoggingInterceptor httpInterceptor) {
+    OkHttpClient provideHttpClient(HttpErrorInterceptor httpErrorInterceptor, NetworkConnectivityInterceptor networkConnectivityInterceptor, HeaderInterceptor headerInterceptor, HttpLoggingInterceptor httpInterceptor) {
         return new OkHttpClient.Builder()
                 .addInterceptor(httpErrorInterceptor)
                 .addInterceptor(networkConnectivityInterceptor)
-                .addInterceptor(queryInterceptor)
+                .addInterceptor(headerInterceptor)
                 .addInterceptor(httpInterceptor)
                 .build();
     }
