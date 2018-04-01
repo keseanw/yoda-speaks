@@ -23,6 +23,10 @@ public class YodaContract {
 
         void stopLoadingIndicator();
 
+        void showLoadingIndicator();
+
+        void hideYodaTranslation();
+
         void showEmptySearchResult();
 
         void clearView();

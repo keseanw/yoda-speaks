@@ -33,6 +33,9 @@
             android:layout_marginStart="142dp"
             android:layout_marginTop="5dp"
             android:src="@mipmap/loader"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/loadingDesc"
             app:layout_constraintBottom_toBottomOf="@+id/yodaTextView"
             app:layout_constraintStart_toEndOf="@+id/yodaTextView"
             app:layout_constraintTop_toTopOf="@+id/yodaTextView" />

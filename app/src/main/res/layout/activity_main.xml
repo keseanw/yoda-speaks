@@ -18,9 +18,17 @@
         android:id="@+id/yoda_input_card"
         />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
+
     <include
         layout="@layout/yoda_response_card"
         android:id="@+id/yoda_response_card"
+        android:visibility="gone"
         />
 
 </LinearLayout>
