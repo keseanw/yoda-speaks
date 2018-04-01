@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
 
     @Override
     public void showYodaTranslation(YodaResponse yodaResponse) {
-        yodaTranslation.setText(yodaResponse.getTranslated());
+        yodaTranslation.setText(yodaResponse.getContents().getTranslated());
     }
 
     @Override

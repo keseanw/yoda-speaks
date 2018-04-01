@@ -58,10 +58,10 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
     @Override
     public void loadTranslation(String inputValue) {
         Disposable disposable = repository.loadTranslation(inputValue)
-                .filter(translation -> translation.getTranslated() != null)
+                .filter(translation -> translation.getContents().getTranslated() != null)
                 .subscribeOn(ioScheduler)
                 .observeOn(uiScheduler)
-                .subscribe(this::handleReturnedData, this::handleError, () -> view.stopLoadingIndicator());
+                .subscribe(this::handleReturnedData, this::handleError);
         disposeBag.add(disposable);
     }
 
@@ -84,7 +84,7 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
     private void handleReturnedData(YodaResponse obj) {
         //view.stopLoadingIndicator();
 
-        if (obj.getTranslated() != null && !obj.getTranslated().isEmpty()) {
+        if (obj.getContents().getTranslated() != null && !obj.getContents().getTranslated().isEmpty()) {
             view.showYodaTranslation(obj);
         } else {
             view.showNoDataMessage();

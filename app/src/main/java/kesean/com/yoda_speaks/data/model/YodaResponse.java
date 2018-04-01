@@ -1,38 +1,32 @@
 package kesean.com.yoda_speaks.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Kesean on 3/28/18.
  */
 
 public class YodaResponse {
 
-    private String translated;
+    @SerializedName("success")
+    private Success success;
+    @SerializedName("contents")
+    private Contents contents;
 
-    private String text;
-
-    private String translationType;
-
-    public String getTranslated() {
-        return translated;
+    public Success getSuccess() {
+        return success;
     }
 
-    public void setTranslated(String translated) {
-        this.translated = translated;
+    public void setSuccess(Success success) {
+        this.success = success;
     }
 
-    public String getText() {
-        return text;
+    public Contents getContents() {
+        return contents;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContents(Contents contents) {
+        this.contents = contents;
     }
 
-    public String getTranslationType() {
-        return translationType;
-    }
-
-    public void setTranslationType(String translationType) {
-        this.translationType = translationType;
-    }
 }
