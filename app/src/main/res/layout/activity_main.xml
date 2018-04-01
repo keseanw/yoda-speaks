@@ -31,5 +31,18 @@
         android:visibility="gone"
         />
 
+    <TextView
+        android:id="@+id/text_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="367dp"
+        android:layout_marginStart="368dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone"
+        />
+
 </LinearLayout>
 </ScrollView>

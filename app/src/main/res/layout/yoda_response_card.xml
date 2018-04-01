@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_marginEnd="8dp"
@@ -11,7 +10,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:layout_gravity="bottom"
-    android:backgroundTint="@color/yoda"
+    android:backgroundTint="@color/colorPrimary"
     android:foreground="?android:attr/selectableItemBackground"
     android:padding="@dimen/padding_normal"
     app:layout_constraintEnd_toEndOf="parent"
@@ -26,20 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/loading"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="142dp"
-            android:layout_marginTop="5dp"
-            android:src="@mipmap/loader"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/loadingDesc"
-            app:layout_constraintBottom_toBottomOf="@+id/yodaTextView"
-            app:layout_constraintStart_toEndOf="@+id/yodaTextView"
-            app:layout_constraintTop_toTopOf="@+id/yodaTextView" />
-
         <TextView
             android:id="@+id/yodaTextView"
             android:layout_width="wrap_content"
@@ -47,14 +32,13 @@
             android:layout_marginBottom="41dp"
             android:layout_marginEnd="143dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:hint="@string/search_hint"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
             android:text="@string/yoda"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/yodaResponse"
-            app:layout_constraintEnd_toStartOf="@+id/loading"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,26 +48,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="113dp"
             android:layout_marginTop="36dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loading" />
-
-        <TextView
-            android:id="@+id/text_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="367dp"
-            android:layout_marginStart="368dp"
-            android:gravity="center_vertical"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/colorPrimaryDark"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintRight_toRightOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

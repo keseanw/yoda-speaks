@@ -106,6 +106,8 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
         if(englishTextInput.getText() != null || yodaTranslation.getText() != null) {
             englishTextInput.getText().clear();
             yodaTranslation.setText("");
+
+            hideYodaTranslation();
         }
     }
 

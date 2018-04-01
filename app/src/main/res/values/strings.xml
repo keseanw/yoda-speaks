@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">yoda-speaks</string>
+    <string name="app_name">Yoda Speaks</string>
     <string name="english">English</string>
     <string name="yoda">Yoda</string>
     <string name="refresh">Refresh</string>
     <string name="loadingDesc">Loading icon</string>
     <string name="clearButtonDesc">Button to clear current translation values</string>
-    <string name="search_hint">Yodanize your text here</string>
+    <string name="input_hint">Yodanize your text here</string>
     <string name="msg_empty_search_result">No Translation Results</string>
     <string name="msg_no_data">No Data Found</string>
 </resources>
