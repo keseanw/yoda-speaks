@@ -36,7 +36,7 @@ public class YodaContract {
     interface YodaPresenter extends BasePresenter<View> {
 
         void loadTranslation(String inputValue);
-
+        
         void setInputValue(String inputValue);
 
         String getInputValue();

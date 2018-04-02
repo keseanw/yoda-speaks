@@ -1,5 +1,6 @@
 package kesean.com.yoda_speaks.ui.yoda;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -8,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -36,6 +38,8 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
     @BindView(R.id.yoda_response_card)
     CardView yodaResponseCardView;
 
+    String inputValue;
+
     @Inject
     YodaPresenter presenter;
 
@@ -48,7 +52,10 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
 
         englishTextInput.setOnEditorActionListener((textView, i, keyEvent) -> {
             if(i == EditorInfo.IME_ACTION_DONE) {
-                presenter.loadTranslation(textView.getText().toString());
+
+                closeSoftKeyboard();
+                presenter.loadTranslation(inputValue);
+
                 return true;
             }
             return false;
@@ -71,7 +78,7 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                inputValue = editable.toString();
             }
         });
 
@@ -83,6 +90,24 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
                 .yodaRepositoryComponent(getYodaRepositoryComponent())
                 .build()
                 .inject(this);
+    }
+
+    @OnClick(R.id.submitButton)
+    public void submitTranslation() {
+        closeSoftKeyboard();
+        if(inputValue != null && !inputValue.isEmpty()) {
+            presenter.loadTranslation(inputValue);
+        }else {
+            showErrorMessage("Please enter valid text");
+        }
+    }
+
+    public void closeSoftKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     @Override
@@ -145,6 +170,7 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
     * Method for displaying error message in view
     * */
     private void showNotification(String message) {
+        hideYodaTranslation();
         notificationText.setVisibility(View.VISIBLE);
         notificationText.setText(message);
     }

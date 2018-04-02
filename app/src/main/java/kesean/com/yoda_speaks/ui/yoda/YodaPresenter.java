@@ -69,11 +69,12 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
 
     @Override
     public void setInputValue(String inputValue) {
-
+        //TODO Shared Prefs Set
     }
 
     @Override
     public String getInputValue() {
+        //TODO Shared Prefs Get
         return null;
     }
 
