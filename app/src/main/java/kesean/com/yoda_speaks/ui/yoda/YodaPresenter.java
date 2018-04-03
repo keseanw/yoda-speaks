@@ -30,7 +30,8 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
     private CompositeDisposable disposeBag;
 
     @Inject
-    public YodaPresenter(YodaRepository repository, YodaContract.View view, @RunOn(SchedulerType.IO) Scheduler ioScheduler, @RunOn(SchedulerType.UI) Scheduler uiScheduler) {
+    public YodaPresenter(YodaRepository repository, YodaContract.View view,
+                         @RunOn(SchedulerType.IO) Scheduler ioScheduler, @RunOn(SchedulerType.UI) Scheduler uiScheduler) {
         this.repository = repository;
         this.view = view;
         this.ioScheduler = ioScheduler;
@@ -59,6 +60,10 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
         disposeBag.clear();
     }
 
+    /*
+   * Getting and Subscribing to the Yoda Translation
+   * */
+
     @Override
     public void loadTranslation(String inputValue) {
         view.showLoadingIndicator();
@@ -77,26 +82,46 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
         disposeBag.add(disposable);
     }
 
+    /*
+   * Set Input Value in Shared Preferences
+   * */
+
     @Override
     public void setInputValue(String inputValue) {
         repository.setText(inputValue);
     }
+
+    /*
+   * Get Input Value from Shared Preferences
+   * */
 
     @Override
     public String getInputValue() {
         return repository.getText();
     }
 
+    /*
+   * Clear Shared Preference Storage
+   * */
+
     @Override
     public void clearSavedPrefs() {
         repository.clearSharedPrefs();
     }
+
+    /*
+   * Handle any error
+   * */
 
     private void handleError(Throwable error) {
         view.stopLoadingIndicator();
 
         view.showErrorMessage(error.getLocalizedMessage());
     }
+
+    /*
+    * Handle the API Response Object
+    * */
 
     private void handleReturnedData(YodaResponse obj) {
         view.stopLoadingIndicator();

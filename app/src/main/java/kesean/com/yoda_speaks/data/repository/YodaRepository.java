@@ -2,8 +2,6 @@ package kesean.com.yoda_speaks.data.repository;
 
 import android.content.SharedPreferences;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 

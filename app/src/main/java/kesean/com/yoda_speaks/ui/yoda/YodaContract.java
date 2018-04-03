@@ -1,7 +1,5 @@
 package kesean.com.yoda_speaks.ui.yoda;
 
-import com.squareup.haha.perflib.Main;
-
 import kesean.com.yoda_speaks.data.model.YodaResponse;
 import kesean.com.yoda_speaks.ui.base.BasePresenter;
 
@@ -26,8 +24,6 @@ public class YodaContract {
         void showLoadingIndicator();
 
         void hideYodaTranslation();
-
-        void showEmptySearchResult();
 
         void clearView();
 

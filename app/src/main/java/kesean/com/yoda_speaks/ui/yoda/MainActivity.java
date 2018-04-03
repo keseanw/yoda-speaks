@@ -1,12 +1,10 @@
 package kesean.com.yoda_speaks.ui.yoda;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -50,6 +48,10 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
         ButterKnife.bind(this);
         initializePresenter();
 
+        /*
+        * Ability to enter input value with soft keyboard
+        * */
+
         englishTextInput.setOnEditorActionListener((textView, i, keyEvent) -> {
             if(i == EditorInfo.IME_ACTION_DONE) {
 
@@ -65,6 +67,10 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
             }
             return false;
         });
+
+        /*
+        * Ability to show and hide clear text button
+        * */
 
         englishTextInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -115,12 +121,18 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
         }
     }
 
+    /*
+    * Show Yoda Result Card and Set Result
+    * */
     @Override
     public void showYodaTranslation(YodaResponse yodaResponse) {
         yodaResponseCardView.setVisibility(View.VISIBLE);
         yodaTranslation.setText(yodaResponse.getContents().getTranslated());
     }
 
+    /*
+    * Hide Yoda Result Card
+    * */
     @Override
     public void hideYodaTranslation() {
         yodaResponseCardView.setVisibility(View.GONE);
@@ -161,11 +173,6 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
     @Override
     public void showLoadingIndicator() {
         loadingIndicator.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void showEmptySearchResult() {
-        showNotification(getString(R.string.msg_empty_search_result));
     }
 
     @Override

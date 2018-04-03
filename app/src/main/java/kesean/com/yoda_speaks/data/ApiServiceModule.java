@@ -31,7 +31,7 @@ public class ApiServiceModule {
     private static final String BASE_URL = "base_url";
 
      /*
-    * Dagger method binding
+    * Dagger method binding for API Service
     * */
 
     @Provides

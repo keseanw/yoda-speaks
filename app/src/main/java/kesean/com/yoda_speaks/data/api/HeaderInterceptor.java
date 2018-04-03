@@ -3,7 +3,6 @@ package kesean.com.yoda_speaks.data.api;
 import java.io.IOException;
 
 import kesean.com.yoda_speaks.data.Config;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
