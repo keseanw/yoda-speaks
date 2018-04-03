@@ -8,4 +8,5 @@
     <string name="input_hint">Enter text here to convert to Yoda speak</string>
     <string name="msg_empty_search_result">No Translation Results</string>
     <string name="msg_no_data">No Data Found</string>
+    <string name="enter_valid_text">Please enter valid text</string>
 </resources>

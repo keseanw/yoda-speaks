@@ -41,5 +41,10 @@ public class YodaRepository implements YodaDataSource {
         return sharedPreferences.getString(Config.YODA_SEARCH_VALUE, "none");
     }
 
-//    TODO ADD SHARED PREFS FOR TRANSLATION RESULT AS WELL (GET & SET)
+    @Override
+    public void clearSharedPrefs() {
+        sharedPreferences.edit()
+                .clear()
+                .apply();
+    }
 }

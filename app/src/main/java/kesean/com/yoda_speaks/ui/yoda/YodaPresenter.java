@@ -47,7 +47,11 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
 
     @Override @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onAttach() {
+    // based on shared prefs- check if input value is saved
+        if(!getInputValue().equals("none")){
 
+            loadTranslation(getInputValue());
+        }
     }
 
     @Override @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -59,6 +63,12 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
     public void loadTranslation(String inputValue) {
         view.showLoadingIndicator();
         view.hideYodaTranslation();
+
+        //Add query to shared preferences
+        if(!inputValue.isEmpty()) {
+            setInputValue(inputValue);
+        }
+
         Disposable disposable = repository.loadTranslation(inputValue)
                 .filter(translation -> translation.getContents().getTranslated() != null)
                 .subscribeOn(ioScheduler)
@@ -69,18 +79,22 @@ public class YodaPresenter implements YodaContract.YodaPresenter, LifecycleObser
 
     @Override
     public void setInputValue(String inputValue) {
-        //TODO Shared Prefs Set
+        repository.setText(inputValue);
     }
 
     @Override
     public String getInputValue() {
-        //TODO Shared Prefs Get
-        return null;
+        return repository.getText();
+    }
+
+    @Override
+    public void clearSavedPrefs() {
+        repository.clearSharedPrefs();
     }
 
     private void handleError(Throwable error) {
         view.stopLoadingIndicator();
-        //can handle displaying different views based on errors returned
+
         view.showErrorMessage(error.getLocalizedMessage());
     }
 

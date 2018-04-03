@@ -62,7 +62,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/textInputEditText"
-            android:layout_width ="0dp"
+            android:layout_width ="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="91dp"
             android:layout_marginEnd="20dp"
@@ -71,9 +71,10 @@
             android:background="@android:color/transparent"
             android:hint="@string/input_hint"
             android:imeOptions="actionDone"
-            android:inputType="text|textCapSentences|textImeMultiLine"
+            android:inputType="text|textCapSentences|textMultiLine"
+            android:scrollbars="none"
             android:maxLines ="3"
-            android:maxLength ="150"
+            android:maxLength ="2000"
             android:scrollHorizontally="false"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -88,13 +89,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginStart="225dp"
             android:background="@color/colorPrimary"
             android:text="Submit"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintRight_toRightOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -54,7 +54,12 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
             if(i == EditorInfo.IME_ACTION_DONE) {
 
                 closeSoftKeyboard();
-                presenter.loadTranslation(inputValue);
+                if(inputValue != null && !inputValue.isEmpty()) {
+                    presenter.loadTranslation(inputValue);
+                }else {
+                    showErrorMessage("Please enter valid text");
+                    return false;
+                }
 
                 return true;
             }
@@ -98,7 +103,7 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
         if(inputValue != null && !inputValue.isEmpty()) {
             presenter.loadTranslation(inputValue);
         }else {
-            showErrorMessage("Please enter valid text");
+            showErrorMessage(getString(R.string.enter_valid_text));
         }
     }
 
@@ -119,11 +124,13 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
     @Override
     public void hideYodaTranslation() {
         yodaResponseCardView.setVisibility(View.GONE);
+        clearView();
     }
 
     @OnClick(R.id.clearResult)
     public void clearTranslationButton(){
         clearYodaTranslation();
+        presenter.clearSavedPrefs();
     }
 
     @Override

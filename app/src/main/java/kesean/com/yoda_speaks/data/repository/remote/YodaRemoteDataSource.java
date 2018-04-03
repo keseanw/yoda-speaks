@@ -40,4 +40,12 @@ public class YodaRemoteDataSource implements YodaDataSource {
     public String getText() {
         return null;
     }
+
+    /*
+    * Not in Use Here
+    * */
+    @Override
+    public void clearSharedPrefs() {
+
+    }
 }

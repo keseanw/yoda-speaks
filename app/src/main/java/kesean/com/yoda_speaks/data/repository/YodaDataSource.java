@@ -14,4 +14,6 @@ public interface YodaDataSource {
     void setText(String englishText);
 
     String getText();
+
+    void clearSharedPrefs();
 }
