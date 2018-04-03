@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -128,6 +129,7 @@ public class MainActivity extends BaseActivity implements YodaContract.View {
     public void showYodaTranslation(YodaResponse yodaResponse) {
         yodaResponseCardView.setVisibility(View.VISIBLE);
         yodaTranslation.setText(yodaResponse.getContents().getTranslated());
+        yodaTranslation.setMovementMethod(new ScrollingMovementMethod());
     }
 
     /*
