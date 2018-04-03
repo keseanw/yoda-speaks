@@ -12,6 +12,8 @@ import okhttp3.Response;
 
 /**
  * Created by Kesean on 3/28/18.
+ *
+ * Checks Network Availability at a Global Level
  */
 
 public class NetworkConnectivityInterceptor implements Interceptor {

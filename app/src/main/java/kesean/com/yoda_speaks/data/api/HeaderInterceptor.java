@@ -9,6 +9,8 @@ import okhttp3.Response;
 
 /**
  * Created by Kesean on 3/28/18.
+ *
+ * Adds Header to every API request
  */
 
 public class HeaderInterceptor implements Interceptor {
